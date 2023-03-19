@@ -1,0 +1,96 @@
+import {APIGatewayProxyEvent, APIGatewayProxyResult} from 'aws-lambda';
+import { middyfy } from '@libs/lambda';
+import { {{functionName}}Model} from './{{functionName}}.model';
+
+export const getAll = middyfy(async (event:APIGatewayProxyEvent, context) => {
+context.callbackWaitsForEmptyEventLoop = false;
+const {{functionName}} = await {{functionName}}Model.find({});
+return {
+    statusCode: 200,
+    body: JSON.stringify({
+    data: {{functionName}}
+    }),
+};
+});
+
+  export const getByID =
+    middyfy(async (event: APIGatewayProxyEvent, context) => {
+      context.callbackWaitsForEmptyEventLoop = false;
+      const
+        {{functionName}} = await
+      {{functionName}}Model.findById(event.pathParameters.id);
+      if (!{{functionName}}) {
+        return {
+          statusCode: 404,
+          body: JSON.stringify({
+            error: 'Not found'
+          }),
+        };
+      }
+      return {
+        statusCode: 200,
+        body: JSON.stringify({
+          data: {{functionName}}
+        }),
+      };
+    });
+  export const create = middyfy(async (event: APIGatewayProxyEvent, context) => {
+    context.callbackWaitsForEmptyEventLoop = false;
+
+    const
+      {{functionName}} = new
+    {{functionName}}Model(JSON.parse(event.body));
+    await
+    {{functionName}}.save();
+    return {
+      statusCode: 201,
+      body: JSON.stringify({
+        data: {{functionName}}
+      }),
+    };
+  });
+  export const update = middyfy(async (event: APIGatewayProxyEvent, context) => {
+    context.callbackWaitsForEmptyEventLoop
+
+    const
+      {{functionName}} = await
+    {{functionName}}Model.findByIdAndUpdate(event.pathParameters.id,
+      JSON.parse(event.body), {
+        new: true
+      });
+    if (!{{functionName}}) {
+      return {
+        statusCode: 404,
+        body: JSON.stringify({
+          error: 'Not found'
+        }),
+      };
+    }
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        data: {{functionName}}
+      }),
+    };
+  });
+  export const remove = middyfy(async (event: APIGatewayProxyEvent, context) => {
+    context.callbackWaitsForEmptyEventLoop = false;
+
+    const
+      {{functionName}} = await
+    {{functionName}}Model.findByIdAndRemove(event.pathParameters.id);
+    if (!{{functionName}}) {
+      return {
+        statusCode: 404,
+        body: JSON.stringify({
+          error: 'Not found'
+        }),
+      };
+    }
+    return {
+      statusCode: 204,
+      body: JSON.stringify({
+        data: null
+      }),
+    };
+  });

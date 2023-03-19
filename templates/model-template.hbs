@@ -1,0 +1,11 @@
+import { Schema, model, Document } from 'mongoose';
+
+export interface {{functionName}}Interface extends Document {
+  /* Define properties for the model interface here */
+}
+
+const {{functionName}}Schema = new Schema<{{functionName}}Interface>({
+  /* Define schema properties here */
+}, { timestamps: true });
+
+export const {{functionName}}Model = model<{{functionName}}Interface>('{{functionName}}', {{functionName}}Schema);

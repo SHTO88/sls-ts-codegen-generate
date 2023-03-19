@@ -1,0 +1,27 @@
+{
+  "name": "sls-ts-codegen generate",
+  "version": "1.0.0",
+  "description": "CRUD code generator for aws-nodejs-typescript template from the Serverless framework",
+  "main": "index.js",
+  "files": [
+    "src",
+    "templates",
+    "index.ts"
+  ],
+  "bin": {
+    "generate": "generate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^10.0.0",
+    "fs-extra": "^11.1.0",
+    "handlebars": "^4.7.7"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.1",
+    "ts-node": "^10.9.1"
+  },
+  "types": "dist/generate.d.ts"
+}
