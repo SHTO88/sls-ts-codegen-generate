@@ -1,5 +1,5 @@
 {
-  "name": "sls-ts-codegen generate",
+  "name": "sls-ts-codegen",
   "version": "1.0.0",
   "description": "CRUD code generator for aws-nodejs-typescript template from the Serverless framework",
   "main": "index.js",
