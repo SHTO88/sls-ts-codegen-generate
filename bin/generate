@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+const { execSync } = require("child_process");
+
+const args = process.argv.slice(2);
+const command = `node ${__dirname}/../dist/index.js ${args.join(" ")}`;
+
+try {
+  execSync(command, { stdio: "inherit" });
+} catch (error) {
+  console.error(error);
+  process.exit(1);
+}
