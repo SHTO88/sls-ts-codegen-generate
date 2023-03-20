@@ -1,6 +1,6 @@
 {
   "name": "sls-ts-codegen",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "CRUD code generator for aws-nodejs-typescript template from the Serverless framework",
   "main": "index.js",
   "files": [
@@ -16,7 +16,16 @@
   "bin": {
     "sls-ts-codegen": "./bin/generate"
   },
-  "keywords": [],
+  "keywords": [
+    "aws-nodejs-typescript",
+    "serverless",
+    "codegen",
+    "code generator"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SHTO88/sls-ts-codegen-generate"
+  },
   "author": "",
   "license": "ISC",
   "scripts": {
