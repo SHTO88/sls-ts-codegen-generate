@@ -1,0 +1,78 @@
+import { AWS } from "@serverless/typescript";
+
+import { cors, handlerPath } from "@libs/handler-resolver";
+
+const functions: AWS["functions"] = {
+  {{functionName}}GetAll: {
+    handler: `${handlerPath(__dirname)}/{{functionName}}Handler.getAll`,
+    events: [
+      {
+        http: {
+          method: "get",
+          path: "{{functionName}}",
+          cors,
+        },
+      },
+    ],
+  },
+  {{functionName}}GetByID: {
+    handler: `${handlerPath(__dirname)}/{{functionName}}Handler.getByID`,
+    events: [
+      {
+        http: {
+          method: "get",
+          path: "{{functionName}}/{id}",
+          cors,
+        },
+      },
+    ],
+  },
+  {{functionName}}Create: {
+    handler: `${handlerPath(__dirname)}/{{functionName}}Handler.create`,
+    events: [
+      {
+        http: {
+          method: "post",
+          path: "{{functionName}}",
+          cors,
+          // request: {
+          //   schemas: {
+          //     "application/json": schema,
+          //   },
+          // },
+        },
+      },
+    ],
+  },
+  {{functionName}}Update: {
+    handler: `${handlerPath(__dirname)}/{{functionName}}Handler.update`,
+    events: [
+      {
+        http: {
+          method: "put",
+          path: "{{functionName}}",
+          cors,
+          // request: {
+          //   schemas: {
+          //     "application/json": schema,
+          //   },
+          // },
+        },
+      },
+    ],
+  },
+  {{functionName}}Remove: {
+    handler: `${handlerPath(__dirname)}/{{functionName}}Handler.remove`,
+    events: [
+      {
+        http: {
+          method: "delete",
+          path: "{{functionName}}/{id}",
+          cors,
+        },
+      },
+    ],
+  },
+};
+
+export default functions;

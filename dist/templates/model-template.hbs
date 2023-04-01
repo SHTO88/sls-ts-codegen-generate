@@ -1,11 +1,28 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model, Document, PaginateModel, Types } from "mongoose";
+import { toJSON } from "@db/plugins";
+import paginate from "@db/plugins/mongoose-paginate";
 
-export interface {{functionName}}Interface extends Document {
+export interface {{modelName}}Interface {
   /* Define properties for the model interface here */
 }
 
-const {{functionName}}Schema = new Schema<{{functionName}}Interface>({
-  /* Define schema properties here */
-}, { timestamps: true });
+const {{modelName}}Schema = new Schema<{{modelName}}Interface>(
+  {
+    /* Define schema properties here */
+  },
+  { timestamps: true }
+);
 
-export const {{functionName}}Model = model<{{functionName}}Interface>('{{functionName}}', {{functionName}}Schema);
+{{modelName}}Schema.plugin(toJSON);
+{{modelName}}Schema.plugin(paginate);
+
+interface {{modelName}}Document extends Document, {{modelName}}Interface {}
+
+export const {{modelName}}Model = model<
+  {{modelName}}Document,
+  PaginateModel<{{modelName}}Document>
+>("{{modelName}}", {{modelName}}Schema);
+
+export const isValidID = (id: string): boolean => {
+  return Types.ObjectId.isValid(id);
+};

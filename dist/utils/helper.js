@@ -32,7 +32,8 @@ const generateCode = ({ functionName, folderPath, templateFile, fileName, }) => 
     const templatePath = path.join(__dirname, "../templates", templateFile);
     const templateString = fs.readFileSync(templatePath, "utf-8");
     const template = handlebars.compile(templateString);
-    const code = template({ functionName });
+    const modelName = functionName.charAt(0).toUpperCase() + functionName.slice(1);
+    const code = template({ functionName, modelName });
     fs.ensureDirSync(folderFullPath);
     const filePath = path.join(folderFullPath, fileName);
     fs.writeFileSync(filePath, code);

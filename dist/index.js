@@ -10,18 +10,29 @@ commander_1.program
 const options = commander_1.program.opts();
 const functionName = options.function;
 const folderPath = options.path || `/src/functions/${functionName}`;
+if (!functionName) {
+    console.log("Function name is required");
+    process.exit(1);
+}
 console.log(`Generating ${functionName} function at ${folderPath}`);
 (0, helper_1.generateCode)({
     functionName,
     folderPath,
     templateFile: "crud-template.hbs",
-    fileName: "handler.ts",
+    fileName: `${functionName}Handler.ts`,
 });
 console.log(`Generating ${functionName} model at ${folderPath}`);
 (0, helper_1.generateCode)({
     functionName,
     folderPath,
     templateFile: "model-template.hbs",
-    fileName: `${functionName}.model.ts`,
+    fileName: `${functionName}Model.ts`,
+});
+console.log(`Generating ${functionName} index at ${folderPath}`);
+(0, helper_1.generateCode)({
+    functionName,
+    folderPath,
+    templateFile: "index-template.hbs",
+    fileName: `index.ts`,
 });
 //# sourceMappingURL=index.js.map
